@@ -1,4 +1,4 @@
 // sample file
-function smaple(){
+function sample(){
   console.log('OK');
 }
