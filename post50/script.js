@@ -1,15 +1,15 @@
 /* ===========================================
-  変数定義
-===========================================*/
-let intItemPath = 'tab/tab1.html';                   // ロード時に読み込むコンテンツの初期値
-let intItemTab = '[data-tab="'+ intItemPath +'"]';   // ロード時にtabItemSelectClassを付与するtabItemClass要素の初期値
-
-/* ===========================================
   定数定義
 ===========================================*/
 const tabItemClass = 'glossarytab-item';             // タブ要素のクラス名
 const tabItemSelectClass = 'glossarytab-selected';   // タブ選択時にタブ要素に付与されるクラス名
 const tabContentsId = 'glossaryContents';            // 読み込みコンテンツを表示する要素のid名
+
+/* ===========================================
+  変数定義
+===========================================*/
+let intItemPath = 'tab/tab1.html';                   // ロード時に読み込むコンテンツの初期値
+let intItemTab = '[data-tab="'+ intItemPath +'"]';   // ロード時にtabItemSelectClassを付与するtabItemClass要素の初期値
 
 /* ===========================================
   関数定義
