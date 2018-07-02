@@ -17,7 +17,7 @@ const tabContentsId = 'glossaryContents';            // 読み込みコンテン
 
 /*---------------------------------------------------
  ロード時に発火する関数
- urlパラメータで「?tab=x」となっている場合 (x-1)番目のtabItemClass要素の「data-tab」に設定されているコンテンツを読み込む
+ urlパラメータで「?tab=x」となっている場合 (x-1)番目の【tabItemClass】要素の「data-tab」に設定されているコンテンツを読み込む
 ---------------------------------------------------*/
 function pageLoad(){
   //urlパラメータを'&'区切りで配列urlParametersを生成
