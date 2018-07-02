@@ -38,13 +38,11 @@ function pageLoad(){
       let intItemPath = $('.'+tabItemClass).eq(parameterArray["tab"]).attr("data-tab");
       let intItemTab = '[data-tab="'+ intItemPath +'"]';
       tabLoad(intItemPath,intItemTab);
-    }else{
-      
+    }else{      
       let intItemTab = '[data-tab="'+ intItemPath +'"]';
       tabLoad(intItemPath,intItemTab);
     }
-  }else{
-  
+  }else{  
   // urlパラメータがなかった場合の処理
     let intItemTab = '[data-tab="'+ intItemPath +'"]';
     tabLoad(intItemPath,intItemTab);  
