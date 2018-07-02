@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#wrapper{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 50px 10px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+}
+#glossaryContents-next{
+  display: none;
+}
+ #glossarytab {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+   #glossarytab .glossarytab-item {
+    list-style: none;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 80px;
+    flex: 0 0 80px;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #40210f;
+    margin: 0 1rem 1rem 0;
+    cursor: pointer; }
+     #glossarytab .glossarytab-item {
+      -webkit-transition: .2s opacity ease-in;
+      -o-transition: .2s opacity ease-in;
+      transition: .2s opacity ease-in;
+      cursor: pointer; }
+       #glossarytab .glossarytab-item:hover {
+        opacity: .4; }
+     #glossarytab .glossarytab-item.glossarytab-selected {
+      background-color: #40210f;
+      color: #fff; }
+</style>
+</head>
+<body>
+<div id="wrapper">
+  <ul id="glossarytab" class="mb50">
+    <li class="glossarytab-item" data-tab="tab/tab1.html">tab1</li>
+    <li class="glossarytab-item" data-tab="tab/tab2.html">tab2</li>
+    <li class="glossarytab-item" data-tab="tab/tab3.html">tab3</li>
+    <li class="glossarytab-item" data-tab="tab/tab4.html">tab4</li>
+  </ul>
+  <div id="glossaryContents">
+    
+  </div>
+</div>
+
+
+<script
+  src="//code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script src="script.js" charset="utf-8"></script>
+</body>
+</html>
