@@ -12,7 +12,10 @@ $(function(){
 
 // ロード時に発火する関数
 function pageLoad(){
+  //urlパラメータを'&'区切りで配列を生成
   const urlParameters = location.search.slice(1).split('&');
+  
+  //
   if( urlParameters != "" ){
     parameterArray = new Array;
     for( i in urlParameters ){
@@ -27,6 +30,9 @@ function pageLoad(){
       let intItemTab = '[data-tab="'+ intItemPath +'"]';
       tabLoad(intItemPath,intItemTab);
     }
+  }else{
+    let intItemTab = '[data-tab="'+ intItemPath +'"]';
+    tabLoad(intItemPath,intItemTab);
   }
 }
 
