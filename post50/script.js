@@ -1,16 +1,24 @@
+/* ===========================================
+  変数定義
+===========================================*/
 let intItemPath = 'tab/tab1.html';                   // ロード時に読み込むコンテンツの初期値
 let intItemTab = '[data-tab="'+ intItemPath +'"]';   // ロード時にtabItemSelectClassを付与するtabItemClass要素の初期値
+
+/* ===========================================
+  定数定義
+===========================================*/
 const tabItemClass = 'glossarytab-item';             // タブ要素のクラス名
 const tabItemSelectClass = 'glossarytab-selected';   // タブ選択時にタブ要素に付与されるクラス名
 const tabContentsId = 'glossaryContents';            // 読み込みコンテンツを表示する要素のid名
 
-$(function(){
-  pageLoad();
-  tabClick();
-});
+/* ===========================================
+  関数定義
+===========================================/
 
-// ロード時に発火する関数
-// urlパラメータで「?tab=x」となっている場合 (x-1)番目のtabItemClass要素の「data-tab」に設定されているコンテンツを読み込む
+/*---------------------------------------------------
+ ロード時に発火する関数
+ urlパラメータで「?tab=x」となっている場合 (x-1)番目のtabItemClass要素の「data-tab」に設定されているコンテンツを読み込む
+---------------------------------------------------*/
 function pageLoad(){
   //urlパラメータを'&'区切りで配列urlParametersを生成
   const urlParameters = location.search.slice(1).split('&');
@@ -43,7 +51,10 @@ function pageLoad(){
   }
 }
 
-// ロード時に読み込むコンテンツと、タブに【tabItemSelectClass】を付与する関数
+
+/*---------------------------------------------------
+ロード時に読み込むコンテンツと、タブに【tabItemSelectClass】を付与する関数
+---------------------------------------------------*/
 function tabLoad(intItemPath,intItemTab){
   $('.'+tabItemClass+intItemTab).addClass(tabItemSelectClass);
   $.ajax(intItemPath,{
@@ -54,7 +65,10 @@ function tabLoad(intItemPath,intItemTab){
   });
 }
 
-// タブをクリックしたときに発火する関数
+
+/*---------------------------------------------------
+タブをクリックしたときに発火する関数
+---------------------------------------------------*/
 function tabClick(){
   $('.'+tabItemClass).on('click',function(){
     let contentsPath = $(this).attr('data-tab');                                         // クリックしたタブの「data-tab」を取得
@@ -78,3 +92,12 @@ function tabClick(){
     });
   });
 }
+
+
+/* ===========================================
+  関数実行
+===========================================*/
+$(function(){
+  pageLoad();
+  tabClick();
+});
