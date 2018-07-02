@@ -1,6 +1,5 @@
 let intItemPath = 'tab/tab1.html';                   // ロード時に読み込むコンテンツの初期値
 let intItemTab = '[data-tab="'+ intItemPath +'"]';   // ロード時にtabItemSelectClassを付与するtabItemClass要素の初期値
-
 const tabItemClass = 'glossarytab-item';             // タブ要素のクラス名
 const tabItemSelectClass = 'glossarytab-selected';   // タブ選択時にタブ要素に付与されるクラス名
 const tabContentsId = 'glossaryContents';            // 読み込みコンテンツを表示する要素のid名
@@ -11,32 +10,40 @@ $(function(){
 });
 
 // ロード時に発火する関数
+// urlパラメータで「?tab=x」となっている場合 (x-1)番目のtabItemClass要素の「data-tab」に設定されているコンテンツを読み込む
 function pageLoad(){
-  //urlパラメータを'&'区切りで配列を生成
+  //urlパラメータを'&'区切りで配列urlParametersを生成
   const urlParameters = location.search.slice(1).split('&');
-  
-  //
-  if( urlParameters != "" ){
-    parameterArray = new Array;
+
+  // urlパラメータがあった場合の処理
+  if( urlParameters[0] != "" ){    
+    parameterArray = new Array; 
+          
+    // urlParametersから連想配列 parameterArray を生成
+    // パラメータ ?key=value を parameterArray[key] = value となるように parameterArray に入れていく。
     for( i in urlParameters ){
       let y = urlParameters[i].split('=');
-      parameterArray[y[0]] = y[1];
-    }
+      parameterArray[y[0]] = y[1];    }
+    
+    // parameterArray["tab"]の値 が undefined でない かつ parameterArray["tab"]の値が【tabItemClass】の要素数より小さい場合
     if( parameterArray["tab"] != undefined && parameterArray["tab"] < $('.'+tabItemClass).length ){
       let intItemPath = $('.'+tabItemClass).eq(parameterArray["tab"]).attr("data-tab");
       let intItemTab = '[data-tab="'+ intItemPath +'"]';
       tabLoad(intItemPath,intItemTab);
     }else{
+      
       let intItemTab = '[data-tab="'+ intItemPath +'"]';
       tabLoad(intItemPath,intItemTab);
     }
   }else{
+  
+  // urlパラメータがなかった場合の処理
     let intItemTab = '[data-tab="'+ intItemPath +'"]';
-    tabLoad(intItemPath,intItemTab);
+    tabLoad(intItemPath,intItemTab);  
   }
 }
 
-// ロード時に読み込むコンテンツと、タブにtabItemSelectClassを付与する関数
+// ロード時に読み込むコンテンツと、タブに【tabItemSelectClass】を付与する関数
 function tabLoad(intItemPath,intItemTab){
   $('.'+tabItemClass+intItemTab).addClass(tabItemSelectClass);
   $.ajax(intItemPath,{
@@ -50,22 +57,22 @@ function tabLoad(intItemPath,intItemTab){
 // タブをクリックしたときに発火する関数
 function tabClick(){
   $('.'+tabItemClass).on('click',function(){
-    let contentsPath = $(this).attr('data-tab');    
-    $('.'+tabItemClass+'.'+tabItemSelectClass).removeClass(tabItemSelectClass);
-    $(this).addClass(tabItemSelectClass);    
+    let contentsPath = $(this).attr('data-tab');                                         // クリックしたタブの「data-tab」を取得
+    $('.'+tabItemClass+'.'+tabItemSelectClass).removeClass(tabItemSelectClass);          // 選択されていたタブからクラス【tabItemSelectClass】を除去
+    $(this).addClass(tabItemSelectClass);                                                // クリックしたタブに【tabItemSelectClass】を付与  
     $.ajax(contentsPath,{
       type: 'get',
       dataType: 'html'
     }).done(function(data){
       $.when(
-        $('#'+tabContentsId+'-current').slideUp(),
-        $('#'+tabContentsId).append('<div id="'+tabContentsId+'-next">'+data+'</div>')
+        $('#'+tabContentsId+'-current').slideUp(),                                       // 表示されていたコンテンツ内容（contents1）をスライドアップで非表示
+        $('#'+tabContentsId).append('<div id="'+tabContentsId+'-next">'+data+'</div>')   // 【tabContentsId】の中に、次に表示するコンテンツ内容（contents2）を追加
       ).done(function(){
         $.when(
-          $('#'+tabContentsId+'-next').slideDown(),
+          $('#'+tabContentsId+'-next').slideDown(),                                      //contents2をスライドダウンで表示
         ).done(function(){
-          $('#'+tabContentsId+'-current').remove();
-          $('#'+tabContentsId+'-next').attr('id',''+tabContentsId+'-current');
+          $('#'+tabContentsId+'-current').remove();                                      //contents1をhtmlから削除                                     
+          $('#'+tabContentsId+'-next').attr('id',''+tabContentsId+'-current');           //contents2のid名を「【tabContentsId】-next」から「【tabContentsId】-current」に変更
         });
       });
     });
