@@ -8,7 +8,7 @@ if (ua.indexOf('iPhone') > 0 || ua.indexOf('iPod') > 0 || (ua.indexOf('Android')
 
 $(function(){
   if( device == 'pc' ){
-    $('.telClick').on('click',function(){
+    $('a.telClick').on('click',function(){
       return false;
     });    
   }  

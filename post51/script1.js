@@ -8,6 +8,6 @@ if (ua.indexOf('iPhone') > 0 || ua.indexOf('iPod') > 0 || (ua.indexOf('Android')
 
 $(function(){
   if( device == 'pc' ){
-    $('.telClick').contents().unwrap();   
+    $('a.telClick').contents().unwrap();   
   }  
 });
